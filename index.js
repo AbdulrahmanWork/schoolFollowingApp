@@ -17,7 +17,7 @@ dotenv.config();
 
 
 // user router
-app.use('/users', userRouter);
+app.use('/api/v1/users', userRouter);
 
 // production
 const __filename = fileURLToPath(import.meta.url);
