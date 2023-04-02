@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import { fileURLToPath } from 'url';
+
 import dotenv from 'dotenv';
 import path from 'path';
 import userRouter from './router/user.js';
@@ -20,6 +22,9 @@ app.get('/', (req, res) => {
 app.use('/users', userRouter);
 
 // production
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, './client/build')));
 app.use('*', function (req, res) {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
