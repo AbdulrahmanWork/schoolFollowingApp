@@ -2,6 +2,8 @@ import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import { fileURLToPath } from 'url';
+
 import dotenv from 'dotenv';
 import path from 'path';
 import userRouter from './router/user.js';
@@ -12,14 +14,15 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 
-app.get('/', (req, res) => {
-  res.json({ message: 'hello in school app' });
-});
+
 
 // user router
 app.use('/users', userRouter);
 
 // production
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.static(path.join(__dirname, './client/build')));
 app.use('*', function (req, res) {
   res.sendFile(path.join(__dirname, './client/build/index.html'));
