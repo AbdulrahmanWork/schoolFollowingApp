@@ -8,7 +8,7 @@ import nodmailer from 'nodemailer';
 export const sendVerifyEmail = (name, email, user_id) => {
   try {
     const transporter = nodmailer.createTransport({
-      host: process.env.HOST,
+      host: String(process.env.HOST),
       port: process.env.EMAIL_PORT,
       secure: false,
       requireTLS: true,
