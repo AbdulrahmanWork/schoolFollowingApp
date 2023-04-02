@@ -21,7 +21,7 @@ export const sendVerifyEmail = (name, email, user_id) => {
       from: String(process.env.USER),
       to: email,
       subject: 'For Verification Eamil',
-      html: `<p>Hii ${name} please click the link here <a href="http://localhost:3000/verify/${user_id}">Verify</a>you mail</p>`,
+      html: `<p>Hii ${name} please click the link here <a href="https://glamorous-ray-tie.cyclic.app/verify/${user_id}">Verify</a>you mail</p>`,
     };
     new Promise((resolve, reject) => {
       transporter.sendMail(mailOptions, function (error, info) {
