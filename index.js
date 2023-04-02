@@ -14,9 +14,7 @@ app.use(bodyParser.json({ extended: true }));
 app.use(bodyParser.urlencoded({ extended: true }));
 dotenv.config();
 
-app.get('/', (req, res) => {
-  res.json({ message: 'hello in school app' });
-});
+
 
 // user router
 app.use('/users', userRouter);
