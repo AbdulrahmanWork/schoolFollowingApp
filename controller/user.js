@@ -4,19 +4,18 @@ import mongoose from 'mongoose';
 import User from '../models/User.js';
 import crypto from 'crypto';
 import nodmailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport'
 
 export const sendVerifyEmail = (name, email, user_id) => {
   try {
-    const transporter = nodmailer.createTransport({
+    const transporter = nodmailer.createTransport(smtpTransport({
+      service:'gmail',
       host: String(process.env.HOST),
-      port: process.env.EMAIL_PORT,
-      secure: false,
-      requireTLS: true,
       auth: {
         user: String(process.env.USER),
         pass: String(process.env.PASS),
       },
-    });
+    }));
     const mailOptions = {
       from: String(process.env.USER),
       to: email,
