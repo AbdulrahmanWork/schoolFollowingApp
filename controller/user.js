@@ -23,13 +23,16 @@ export const sendVerifyEmail = (name, email, user_id) => {
       subject: 'For Verification Eamil',
       html: `<p>Hii ${name} please click the link here <a href="http://localhost:3000/verify/${user_id}">Verify</a>you mail</p>`,
     };
-    transporter.sendMail(mailOptions, function (error, info) {
-      if (error) {
-        console.log(error);
-      } else {
-        res.status(200).json({ message: `email has been sent` });
-      }
+    new Promise((resolve, reject) => {
+      transporter.sendMail(mailOptions, function (error, info) {
+        if (error) {
+          reject(error);
+        } else {
+          res.status(200).json({ message: `email has been sent` });
+        }
+      });
     });
+   
   } catch (error) {
     console.log(error.message);
   }
