@@ -8,8 +8,8 @@ import nodmailer from 'nodemailer';
 export const sendVerifyEmail = (name, email, user_id) => {
   try {
     const transporter = nodmailer.createTransport({
+      service:'gmail',
       host: String(process.env.HOST),
-      port: 2525,
       secure: true,
       requireTLS: true,
       auth: {
